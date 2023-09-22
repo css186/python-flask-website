@@ -15,7 +15,7 @@ JOBS = [{
 }, {
     "id": 3,
     "title": "Backend Engineer",
-    "location": "test3",
+    "location": "Taipei, Taiwan",
     "salary": "3000"
 }, {
     "id": 4,
