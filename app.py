@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from sqlalchemy import text
-from database import load_job_from_db, load_jobs_from_db
+from database import load_job_from_db, load_jobs_from_db, store_application_to_db
 
 app = Flask(__name__)
 
@@ -45,6 +45,21 @@ def show_job(id):
 def list_jobs():
   jobs = load_jobs_from_db()
   return jsonify(jobs)
+
+
+@app.post("/job/<id>/apply")
+def apply_job(id):
+  # load job
+  job = load_job_from_db(id)
+
+  # get data from post request
+  data = request.form
+
+  # store in database
+  # print(id)
+  store_application_to_db(id, data)
+
+  return render_template("submitted.html", application=data, job=job)
 
 
 if __name__ == "__main__":
