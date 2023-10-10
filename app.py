@@ -31,7 +31,6 @@ JOBS = load_jobs_from_db()
 
 @app.route("/")
 def index():
-  print(type(JOBS))
   return render_template("home.html", jobs=JOBS)
 
 
