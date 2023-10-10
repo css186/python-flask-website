@@ -42,9 +42,17 @@ def show_job(id):
 
 
 @app.route("/api/jobs")
-def list_jobs():
+def show_all_jobs():
   jobs = load_jobs_from_db()
   return jsonify(jobs)
+
+
+@app.route("/api/job/<id>")
+def show_single_job():
+  job = load_job_from_db(id)
+  if not job:
+    return "Not Found", 404
+  return jsonify(job)
 
 
 @app.post("/job/<id>/apply")
