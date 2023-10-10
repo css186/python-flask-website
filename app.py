@@ -26,16 +26,16 @@ app = Flask(__name__)
 #     "salary": "4000"
 # }]
 
-JOBS = load_jobs_from_db()
-
 
 @app.route("/")
 def index():
+  JOBS = load_jobs_from_db()
   return render_template("home.html", jobs=JOBS)
 
 
 @app.route("/api/jobs")
 def list_jobs():
+  JOBS = load_jobs_from_db()
   return jsonify(str(JOBS))
 
 
