@@ -29,14 +29,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-  JOBS = load_jobs_from_db()
-  return render_template("home.html", jobs=JOBS)
+  current_jobs = load_jobs_from_db()
+  return render_template("home.html", jobs=current_jobs)
 
 
 @app.route("/api/jobs")
 def list_jobs():
-  JOBS = load_jobs_from_db()
-  return jsonify(str(JOBS))
+  current_jobs = load_jobs_from_db()
+  return jsonify(str(current_jobs))
 
 
 if __name__ == "__main__":
